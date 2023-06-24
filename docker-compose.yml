@@ -1,0 +1,33 @@
+services:
+  app:
+    container_name: api
+    image: node:18-alpine
+    command: sh -c "npm install && npx prisma generate && npm run dev"
+    ports:
+      - 127.0.0.1:3000:3000
+    working_dir: /home/app
+    volumes:
+      - .:/home/app
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgresql:5432/postgres?schema=public
+
+  postgresql:
+    container_name: postgresql
+    image: bitnami/postgresql:15
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_volume:/bitname/postgresql
+    environment:
+      POSTGRESQL_USER: postgres
+      POSTGRESQL_DATABASE: postgres
+      POSTGRESQL_PASSWORD: postgres
+
+volumes:
+  postgres_volume:
+    driver: local
+
+networks:
+  default:
+    name: fast-net

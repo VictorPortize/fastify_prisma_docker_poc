@@ -8,11 +8,11 @@
   },
   "scripts": {
     "test": "npm run build:ts && tsc -p test/tsconfig.json && tap --ts \"test/**/*.test.ts\"",
-    "start": "npm run build:ts && fastify start -l info dist/app.js",
+    "start": "npm run build:ts && fastify start -l info dist/src/app.js",
     "build:ts": "tsc",
     "watch:ts": "tsc -w",
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
-    "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js"
+    "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
   "dependencies": {
     "@fastify/autoload": "^5.0.0",
     "@fastify/sensible": "^5.0.0",
+    "@prisma/client": "4.16.1",
     "fastify": "^4.0.0",
     "fastify-cli": "^5.7.1",
     "fastify-plugin": "^4.0.0",
