@@ -1,3 +1,0 @@
-Usage: fastify generate-plugin [opts] <file> [--] [<plugin-options>]
-
-Generate Swagger/OpenAPI schema for a project using @fastify/cli.
